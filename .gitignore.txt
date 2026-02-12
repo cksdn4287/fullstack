@@ -1,0 +1,21 @@
+# --- Backend (Gradle) ---
+.gradle/
+build/
+bin/
+out/
+.settings/
+.project
+.classpath
+help.html
+.metadata/
+
+# --- Frontend (Node/Vite) ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vscode/
+
+# --- OS/Common ---
+.DS_Store
+Thumbs.db
