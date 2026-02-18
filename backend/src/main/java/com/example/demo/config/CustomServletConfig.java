@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.FormatterRegistrar;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,7 +20,8 @@ public class CustomServletConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		
 		registry.addMapping("/**")
-		.allowedOrigins("HEAD","GET","POST","PUT","DELETE","OPTIONS")
+		.allowedOrigins("*")
+		.allowedMethods("HEAD","GET","POST","PUT","DELETE","OPTIONS")
 		.maxAge(300)
 		.allowedHeaders("Authorization","Cache-Control", "Content-Type");
 	}
