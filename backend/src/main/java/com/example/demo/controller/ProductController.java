@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,8 +61,14 @@ public class ProductController {
 		return fileUtil.getFile(fileName);
 	}
 	
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//	@PreAuthorize("permitAll()")
+//	@PreAuthorize("principal.roleNames.contains('ADMIN')")
 	@GetMapping("/list")
 	public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO){
+		
+		log.info("현재 사용자: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		
 		log.info("list--------------------" + pageRequestDTO);
 		

@@ -3,6 +3,7 @@ import { getList } from "../../api/productsApi";
 import useCustomMove from "../../hooks/useCustomMove";
 import FetchingModal from "../common/FetchingModal";
 import { API_SERVER_HOST } from "../../api/todoApi";
+import PageComponent from "../common/PageComponent";
 
 const host =  API_SERVER_HOST
 
@@ -75,6 +76,8 @@ const ListComponent = () => {
               </div>
             )}
           </div>
+
+          <PageComponent serverData={serverData} movePage={moveToList}></PageComponent>
       </div>
   )
 }

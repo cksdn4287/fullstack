@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.Map;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,8 @@ public class TodoController {
 	@GetMapping("/list")
 	public PageResponseDTO<TodoDTO>  list(PageRequestDTO pageRequestDTO){
 		
+		
+		log.info("현재 사용자: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		log.info(pageRequestDTO);
 		
 		return service.list(pageRequestDTO);

@@ -26,25 +26,25 @@ public class ProductRepositoryTests {
 	@Autowired
 	ProductRepository productRepository;
 	
-//	@Test
-//	public void testInsert() {
-//		
-//		for(int i = 0; i <10 ; i++) {
-//			
-//			Product product = Product.builder()
-//					.pname("삼품" + i)
-//					.price(100*i)
-//					.pdesc("상품설명 " + i)
-//					.build();
-//			
-//			product.addImageString(UUID.randomUUID().toString()+ "_" + "IMAGE1.jpg");
-//			product.addImageString(UUID.randomUUID().toString()+ "_" + "IMAGE2.jpg");
-//			
-//			productRepository.save(product);
-//			
-//			log.info("-----------------------");
-//		}
-//	}
+	@Test
+	public void testInsert() {
+		
+		for(int i = 0; i <10 ; i++) {
+			
+			Product product = Product.builder()
+					.pname("삼품" + i)
+					.price(100*i)
+					.pdesc("상품설명 " + i)
+					.build();
+			
+			product.addImageString(UUID.randomUUID().toString()+ "_" + "IMAGE1.jpg");
+			product.addImageString(UUID.randomUUID().toString()+ "_" + "IMAGE2.jpg");
+			
+			productRepository.save(product);
+			
+			log.info("-----------------------");
+		}
+	}
 	
 	
 //	@Transactional
@@ -61,29 +61,29 @@ public class ProductRepositoryTests {
 //		log.info(product.getImageList());
 //	}
 	
-	@Test
-	public void testRead2() {
-		
-		Long pno = 1L;
-		
-		Optional<Product> result = productRepository.selectOne(pno);
-		
-		Product product = result.orElseThrow();
-		
-		log.info(product);
-		log.info(product.getImageList());
-	}
-	
-	@Commit
-	@Transactional
-	@Test
-	public void testDelete() {
-		
-		Long pno = 2L;
-		
-		productRepository.updateToDelete(pno, true);
-	}
-	
+//	@Test
+//	public void testRead2() {
+//		
+//		Long pno = 1L;
+//		
+//		Optional<Product> result = productRepository.selectOne(pno);
+//		
+//		Product product = result.orElseThrow();
+//		
+//		log.info(product);
+//		log.info(product.getImageList());
+//	}
+//	
+//	@Commit
+//	@Transactional
+//	@Test
+//	public void testDelete() {
+//		
+//		Long pno = 2L;
+//		
+//		productRepository.updateToDelete(pno, true);
+//	}
+//	
 	
 //	@Test
 //	public void testUpdate() {
@@ -106,15 +106,15 @@ public class ProductRepositoryTests {
 //	}
 	
 	
-	@Test
-	public void testList() {
-		
-		Pageable pageable = PageRequest.of(0,  10 , Sort.by("pno").descending());
-		
-		Page<Object[]> result = productRepository.selectList(pageable);
-		
-		result.getContent().forEach(arr -> log.info(Arrays.toString(arr)));
-	}
+//	@Test
+//	public void testList() {
+//		
+//		Pageable pageable = PageRequest.of(0,  10 , Sort.by("pno").descending());
+//		
+//		Page<Object[]> result = productRepository.selectList(pageable);
+//		
+//		result.getContent().forEach(arr -> log.info(Arrays.toString(arr)));
+//	}
 	
 	
 }

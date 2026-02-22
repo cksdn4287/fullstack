@@ -8,6 +8,8 @@ const productsRouter = () => {
   const Loading = <div>Loading......</div>
   const ProductsList = lazy(  () => import("../pages/products/ListPage"))
   const ProductsAdd = lazy(  () => import("../pages/products/AddPage"))
+  const ProductRead = lazy(  () => import("../pages/products/ReadPage"))
+  const ProductModify = lazy(  () => import("../pages/products/ModifyPage"))
 
 
   return[
@@ -22,6 +24,14 @@ const productsRouter = () => {
     {
       path:"add",
       element:<Suspense fallback={Loading}><ProductsAdd></ProductsAdd></Suspense>
+    },
+    {
+      path:"read/:pno",
+      element:<Suspense fallback={Loading}><ProductRead></ProductRead></Suspense>
+    },
+    {
+      path:"modify/:pno",
+      element:<Suspense fallback={Loading}><ProductModify></ProductModify></Suspense>
     }
   ]
 }
