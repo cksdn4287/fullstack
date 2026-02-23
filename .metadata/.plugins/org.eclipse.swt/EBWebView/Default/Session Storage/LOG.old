@@ -1,4 +1,3 @@
-2026/02/22-15:08:08.478 3fb0 Reusing MANIFEST C:\Users\cksdn47\Desktop\fullstack\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
-2026/02/22-15:08:08.505 3fb0 Recovering log #3
-2026/02/22-15:08:08.515 3fb0 Level-0 table #3: started
-2026/02/22-15:08:08.515 3fb0 Level-0 table #3: 0 bytes IO error: C:\Users\cksdn47\Desktop\fullstack\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.ldb: Unable to create writable file (ChromeMethodBFE: 9::NewWritableFile::16)
+2026/02/22-15:09:18.886 230c Reusing MANIFEST C:\Users\cksdn47\Desktop\fullstack\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
+2026/02/22-15:09:18.889 230c Recovering log #3
+2026/02/22-15:09:18.895 230c Reusing old log C:\Users\cksdn47\Desktop\fullstack\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 

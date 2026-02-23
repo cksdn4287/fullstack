@@ -4,6 +4,7 @@ import useCustomMove from "../../hooks/useCustomMove";
 import FetchingModal from "../common/FetchingModal";
 import { API_SERVER_HOST } from "../../api/todoApi";
 import PageComponent from "../common/PageComponent";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const host =  API_SERVER_HOST
 
@@ -21,7 +22,10 @@ const initState = {
   current:0
 }
 
+
 const ListComponent = () => {
+
+  const {exceptionHandle} = useCustomLogin()
 
   const {page, size, refresh, moveToList, moveToRead} = useCustomMove()
 
@@ -37,7 +41,7 @@ const ListComponent = () => {
       console.log(data)
       setServerDate(data)
       setFetching(false)
-    })
+    }).catch(err => exceptionHandle(err))
   }, [page, size, refresh])
   return(
       <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
