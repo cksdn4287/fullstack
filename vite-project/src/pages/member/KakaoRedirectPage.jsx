@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAccessToken } from "../../api/kakaoApi";
+import { getAccessToken, getMemberWithAccessToken } from "../../api/kakaoApi";
 
 const KakaoRedirectPage = () => {
 
@@ -10,8 +10,14 @@ const KakaoRedirectPage = () => {
 
   useEffect(  () => {
 
-    getAccessToken(authCode).then(data => {
-      console.log(data)
+    getAccessToken(authCode).then(accessToken => {
+      console.log(accessToken)
+
+      getMemberWithAccessToken(accessToken).then(memberInfo => {
+
+        console.log("-------------------")
+        console.log(memberInfo)
+      })
     })
   }, [authCode])
 

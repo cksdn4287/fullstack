@@ -1,4 +1,5 @@
 import axios from "axios"
+import { API_SERVER_HOST } from "./todoApi"
 
 const rest_api_key = `be2da74dc576cd462dfe2571b8a2c2bd`
 const redirect_uri = `http://localhost:5173/member/kakao`
@@ -43,4 +44,12 @@ export const getAccessToken = async (authCode) => {
   const accessToken = res.data.access_token
   
   return accessToken
+}
+
+export const getMemberWithAccessToken = async(accessToken) => {
+
+  // 프런트엔드 api 요청 부분
+const res = await axios.get(`${API_SERVER_HOST}/api/member/kakao?accessToken=${accessToken}`)
+
+  return res.data
 }
