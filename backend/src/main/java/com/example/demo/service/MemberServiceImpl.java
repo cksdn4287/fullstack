@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +15,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.demo.domain.Member;
+import com.example.demo.domain.MemberRole;
 import com.example.demo.dto.MemberDTO;
+import com.example.demo.dto.MemberModifyDTO;
 import com.example.demo.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -29,16 +33,7 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberRepository memberRepository;
 	
 	private final PasswordEncoder passwordEncoder;
-	
-	public MemberDTO getKakaoMember(String accessToken) {
 		
-		String email = getEmailFromKakaoAccessToken(accessToken);
-		
-		log.info("email : " + email);
-		
-		return null;
-	}
-	
 	private String getEmailFromKakaoAccessToken(String accessToken) {
 		
 		String kakaoGetUserURL = "https://kapi.kakao.com/v2/user/me";
@@ -91,4 +86,93 @@ public class MemberServiceImpl implements MemberService {
 		
 		return buffer.toString();
 	}
+	
+	private Member makeSocialMember(String email) {
+		
+		String tempPassword = makeTempPassword();
+		
+		log.info("tempPassword" + tempPassword);
+		
+		String nickname = "소셜회원";
+		
+		Member member = Member.builder()
+				.email(email)
+				.pw(passwordEncoder.encode(tempPassword))
+				.nickname(nickname)
+				.social(true)
+				.build();
+		
+		member.addRole(MemberRole.USER);
+		
+		return member;
+		
+	}
+	
+	
+	public MemberDTO getKakaoMember(String accessToken) {
+		
+		String email = getEmailFromKakaoAccessToken(accessToken);
+		
+		log.info("email", email);
+		
+		Optional<Member> result = memberRepository.findById(email);
+		
+		if(result.isPresent()) {
+			
+			MemberDTO memberDTO = entityToDTO(result.get());
+			
+			return memberDTO;
+		}
+		
+		Member socialMember = makeSocialMember(email);
+		memberRepository.save(socialMember);
+		
+		MemberDTO memberDTO = entityToDTO(socialMember);
+		
+		return memberDTO;
+	}
+	
+	public void modifyMember(MemberModifyDTO memberModifyDTO) {
+		
+		Optional<Member> result = memberRepository.findById(memberModifyDTO.getEmail());
+		
+		Member member = result.orElseThrow();
+		
+		member.changePw(passwordEncoder.encode(memberModifyDTO.getPw()));
+		member.changeSocial(false);
+		member.changeNickname(memberModifyDTO.getNickname());
+		
+		memberRepository.save(member);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

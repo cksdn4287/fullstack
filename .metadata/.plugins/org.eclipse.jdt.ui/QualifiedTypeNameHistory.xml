@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="lombok.launch.AnnotationProcessorHider.ClaimingProcessor"/>
-    <fullyQualifiedTypeName name="io.jsonwebtoken.MalformedJwtException"/>
-    <fullyQualifiedTypeName name="io.jsonwebtoken.ExpiredJwtException"/>
-    <fullyQualifiedTypeName name="io.jsonwebtoken.InvalidClaimException"/>
-    <fullyQualifiedTypeName name="io.jsonwebtoken.JwtException"/>
-    <fullyQualifiedTypeName name="org.springframework.web.filter.OncePerRequestFilter"/>
     <fullyQualifiedTypeName name="jakarta.servlet.FilterChain"/>
     <fullyQualifiedTypeName name="com.example.demo.security.filter.JWTCheckFilter"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"/>
@@ -26,11 +20,9 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="com.example.demo.security.handler.CustomAccessDeniedHandler"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestHeader"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="com.example.demo.util.JWTUtil"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
     <fullyQualifiedTypeName name="com.example.demo.util.CustomJWTException"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
@@ -54,10 +46,18 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Member"/>
-    <fullyQualifiedTypeName name="com.example.demo.domain.Member"/>
-    <fullyQualifiedTypeName name="com.example.demo.dto.MemberDTO"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="com.example.demo.domain.MemberRole"/>
+    <fullyQualifiedTypeName name="com.example.demo.domain.Member"/>
+    <fullyQualifiedTypeName name="com.example.demo.dto.MemberDTO"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.example.demo.util.JWTUtil"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.example.demo.dto.MemberModifyDTO"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
 </qualifiedTypeNameHistroy>

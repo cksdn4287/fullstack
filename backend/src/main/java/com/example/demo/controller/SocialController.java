@@ -1,10 +1,17 @@
 package com.example.demo.controller;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.MemberDTO;
+import com.example.demo.dto.MemberModifyDTO;
 import com.example.demo.service.MemberService;
+import com.example.demo.util.JWTUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,14 +25,64 @@ public class SocialController {
 	private final MemberService memberService;
 	
 	@GetMapping("/api/member/kakao")
-	public String[] getMamberFromKakao(@RequestParam(name = "accessToken") String accessToken) {
+	public Map<String, Object> getMamberFromKakao(@RequestParam(name = "accessToken") String accessToken) {
 		
 		log.info("access Token");
 		log.info(accessToken);
 		
-		memberService.getKakaoMember(accessToken);
+		MemberDTO memberDTO = memberService.getKakaoMember(accessToken);
 		
-		return new String[] {"AAA","BBB","CCC"};
+		Map<String , Object> claims = memberDTO.getClaims();
+		
+		String jwtAccessToken = JWTUtil.generateToken(claims, 10);
+		String jwtRefreshToken = JWTUtil.generateToken(claims, 60*24);
+		
+		claims.put("accessToken", jwtAccessToken);
+		claims.put("refreshToken", jwtRefreshToken);
+		
+		
+		
+		return claims;
+		
+	}
+	
+	@PutMapping("/api/member/modify")
+	public Map<String, String> modify(@RequestBody MemberModifyDTO  memberModifyDTO){
+		
+		log.info("member modify : " + memberModifyDTO );
+		
+		memberService.modifyMember(memberModifyDTO);
+		
+		return Map.of("result" , "modified");
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
