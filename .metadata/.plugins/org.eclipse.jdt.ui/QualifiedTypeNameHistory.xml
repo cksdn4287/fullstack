@@ -49,15 +49,15 @@
     <fullyQualifiedTypeName name="com.example.demo.repository.CartRepository"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.AutoClose"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="com.example.demo.repository.CartItemRepository"/>
-    <fullyQualifiedTypeName name="com.example.demo.domain.Member"/>
     <fullyQualifiedTypeName name="com.example.demo.domain.Cart"/>
     <fullyQualifiedTypeName name="com.example.demo.domain.Product"/>
     <fullyQualifiedTypeName name="org.springframework.test.annotation.Commit"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="com.example.demo.domain.CartItem"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.demo.dto.CartItemListDTO"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.example.demo.domain.Member"/>
+    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
 </qualifiedTypeNameHistroy>

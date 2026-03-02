@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class TodoRepositoryTest {
 //		log.info("-------------------------------------");
 //		log.info(todoRepository);
 //	}
-	
+//	
 	@Test
 	public void testInsert() {
 		
@@ -47,17 +48,17 @@ public class TodoRepositoryTest {
 		}
 	}
 	
-//	@Test
-//	public  void testRead() {
-//		
-//		Long tno = 33L;
-//		
-//		Optional<Todo> result = todoRepository.findById(tno);
-//		
-//		Todo todo = result.orElseThrow();
-//		
-//		log.info( todo);
-//	}
+	@Test
+	public  void testRead() {
+		
+		Long tno = 33L;
+		
+		Optional<Todo> result = todoRepository.findById(tno);
+		
+		Todo todo = result.orElseThrow();
+		
+		log.info( todo);
+	}
 	
 //	@Test
 //	public void testModify() {
