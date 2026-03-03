@@ -1,0 +1,76 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.domain.CartItem;
+import com.example.demo.dto.CartItemDTO;
+import com.example.demo.dto.CartItemListDTO;
+import com.example.demo.repository.CartItemRepository;
+import com.example.demo.repository.CartRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@RequiredArgsConstructor
+@Service
+@Log4j2
+public class CartServiceImpl   implements CartService{
+
+	private final CartRepository cartRepository;
+	
+	private final CartItemRepository cartItemRepository;
+	
+	public List<CartItemListDTO> addOrModify(CartItemDTO cartItemDTO){
+		
+		String email = cartItemDTO.getEmail();
+		
+		
+		Long pno = cartItemDTO.getPno();
+		
+		int qty = cartItemDTO.getQty();
+		
+		Long cino = cartItemDTO.getCino();
+		
+		if(cino != null) {
+			Optional<CartItem> cartItemResult = cartItemRepository.findById(cino);
+			
+			CartItem cartItem = cartItemResult.orElseThrow();
+			
+			cartItem.changeQty(qty);
+			
+			cartItemRepository.save(cartItem);
+			
+			return getCartITems(email);
+			
+		}
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

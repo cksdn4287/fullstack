@@ -1,0 +1,125 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.domain.Cart;
+import com.example.demo.domain.CartItem;
+import com.example.demo.domain.Member;
+import com.example.demo.dto.CartItemDTO;
+import com.example.demo.dto.CartItemListDTO;
+import com.example.demo.repository.CartItemRepository;
+import com.example.demo.repository.CartRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@RequiredArgsConstructor
+@Service
+@Log4j2
+public class CartServiceImpl   implements CartService{
+
+	private final CartRepository cartRepository;
+	
+	private final CartItemRepository cartItemRepository;
+	
+	public List<CartItemListDTO> addOrModify(CartItemDTO cartItemDTO){
+		
+		String email = cartItemDTO.getEmail();
+		
+		
+		Long pno = cartItemDTO.getPno();
+		
+		int qty = cartItemDTO.getQty();
+		
+		Long cino = cartItemDTO.getCino();
+		
+		if(cino != null) {
+			Optional<CartItem> cartItemResult = cartItemRepository.findById(cino);
+			
+			CartItem cartItem = cartItemResult.orElseThrow();
+			
+			cartItem.changeQty(qty);
+			
+			cartItemRepository.save(cartItem);
+			
+			return getCartITems(email);
+			
+		}
+		
+		//장바구니 아이템 번호 cino 가 없는 경우
+		
+		//사용자의 카드
+		
+	}
+	
+	
+	//사용자의 장바구니가 없었다면 새로운 장바구니를 생성하고 반환
+	private Cart getCart(String email) {
+		
+		Cart cart = null;
+		
+		Optional<Cart> result = cartRepository.getCartOfMember(email);
+		
+		if(result.isEmpty()) {
+			
+			log.info("Cart of the member is not exist!!");
+			
+			Member member = Member.builder().email(email).build();
+			
+			Cart tempCart = Cart.builder().owner(member).build();
+			
+			cart = cartRepository.save(tempCart);
+		}else {
+			cart = result.get();
+		}
+		
+		return cart;
+		
+	}
+	public List<CartItemListDTO> getCartItems(String email){
+		
+		return cartItemRepository.getItemsOfCartDTOByEmail(email);
+	}
+	
+	
+	public List<CartItemListDTO> getCartItems(String email){
+		
+		Long cno = cartItemRepository.getCartFromItem(email);
+		
+		log.info("cart cno : " + cno);
+		
+		cartItemRepository.deleteById(cno);
+		
+		return cartItemRepository.getItemsOfCartDTOByCart(cno);
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

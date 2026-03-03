@@ -1,14 +1,15 @@
 package com.example.demo.repository;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
-import com.example.demo.dto.PageRequestDTO;
-import com.example.demo.dto.PageResponseDTO;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.service.ProductService;
 
@@ -21,6 +22,9 @@ public class ProductServiceTests {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ProductRepository productRepository;
 	
 //	@Test
 //	public void testList() {
@@ -57,5 +61,16 @@ public class ProductServiceTests {
 		
 		log.info("목록 : " + productDTO);
 		log.info(productDTO.getUploadFileNames());
+	}
+	
+	
+	@Test
+	public void testList() {
+		
+		Pageable pageable = PageRequest.of(0, 10 , Sort.by("pno").descending());
+		
+		Page<Object[]> result = productRepository.selectList(pageable);
+		
+		result.getContent().forEach(arr -> log.info(Arrays.toString(arr)));
 	}
 }
