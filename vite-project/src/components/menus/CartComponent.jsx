@@ -1,4 +1,4 @@
-import { useEffect , useMemo} from "react";
+import { useEffect, useMemo} from "react";
 import useCustomCart from "../../hooks/useCustomCart";
 import CartItemComponent from "../cart/CartItemComponent";
 import useCustomLogin from "../../hooks/useCustomLogin";
@@ -8,7 +8,19 @@ const CartComponent = () => {
 
   const {isLogin , loginState} = useCustomLogin();
 
-  const {refreshCart , cartItems, changeCart} = useCustomCart()
+  const {refreshCart , cartItems, changeCart} = useCustomCart();
+
+  const total = useMemo(    () => {
+
+    let total = 0
+
+    for(const item of cartItems){
+
+      total += item.price * item.qty
+    }
+
+    return total
+  } , [cartItems])
   
   useEffect(  () => {
 
@@ -33,8 +45,14 @@ const CartComponent = () => {
 
       <div>
         <ul>
-          {cartItems.map( item => <CartItemComponent {...item} key={item.cino}  changeCart={changeCart}></CartItemComponent>)}
+          {cartItems.map( item => <CartItemComponent {...item} key={item.cino}  
+          changeCart={changeCart}
+          email={loginState.email}></CartItemComponent>)}
         </ul>
+
+        <div>
+            <div className="text-2xl text-right font-extrabold">TOTAL : {total}</div>
+        </div>
       </div>
       </div>
       :

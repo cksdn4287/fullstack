@@ -17,7 +17,6 @@ import com.example.demo.dto.CartItemDTO;
 import com.example.demo.dto.CartItemListDTO;
 import com.example.demo.service.CartService;
 
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -35,7 +34,7 @@ public class CartController {
 	public List<CartItemListDTO>  changeCart(@Param("itemDTO")  @RequestBody CartItemDTO itemDTO){
 		
 		
-		log.info(itemDTO);
+		log.info("장바구니 변경 요청 : " + itemDTO);
 		
 		if(itemDTO.getQty() <= 0){
 			return cartService.remove(itemDTO.getCino());

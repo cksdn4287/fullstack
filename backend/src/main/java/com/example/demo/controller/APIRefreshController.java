@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.util.CustomJWTException;
@@ -17,7 +18,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class APIRefreshController {
 
-	
+	@RequestMapping("/api/member/refresh")
 	public Map<String, Object> refresh(@RequestHeader("Authorization") String authHeader, String refreshToken){
 		
 		if(refreshToken == null) {

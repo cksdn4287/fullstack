@@ -2,13 +2,21 @@ import {API_SERVER_HOST} from "../../api/todoApi"
 
 const host = API_SERVER_HOST
 
-const CartItemComponent = ( {cino, pname, price, pno, qty, imageFile , changeCart}) => {
+const CartItemComponent = ( {cino, pname, price, pno, qty, imageFile , changeCart , email}) => {
 
   const handleClickQty = (amount) => {
 
-    changeCart({cino: cino , pno:pno, qty:qty + amount})
+    changeCart({email, cino, pno, qty:qty + amount})
   }
 
+  const handleClickDelete = () => {
+  // x 버튼용: 수량을 0으로 보내서 서버에서 삭제 로직이 타게 함
+  if(window.confirm("장바구니에서 삭제하시겠습니까?")) {
+
+    console.log("삭제 요청 데이터 확인 : " , {email , cino, pno, qty:0})
+    changeCart({ email, cino, pno, qty: 0 }); 
+  }
+};
   return(
   <li key={cino} className="border-2">
     <div className="w-full border-2">
@@ -44,7 +52,7 @@ const CartItemComponent = ( {cino, pname, price, pno, qty, imageFile , changeCar
 
         <div className="flex text-white font-bold p-2 justify-center">
           <button className="m-1 p-1 text-xl text-white bg-red-500 w-8 rounded-lg"
-          onClick={() => handleClickQty(-1 * qty)}>
+          onClick={handleClickDelete}>
             x
           </button>
         </div>

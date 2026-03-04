@@ -60,7 +60,7 @@ const useCustomLogin = () => {
   }
 }
 
-  return{loginState, isLogin, doLogin, doLogout, moveToPath , moveToLogin, moveToLoginReturn , moveToLoginReturn, exceptionHandle}
+  return{loginState, isLogin, doLogin, doLogout, moveToPath , moveToLogin, moveToLoginReturn , exceptionHandle}
   
 }
 
